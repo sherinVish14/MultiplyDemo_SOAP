@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+    defaultConfig {
+        applicationId "com.sherin.soapdemo"
+        minSdkVersion 15
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    repositories {
+        maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases/' }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    // Support
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.vectordrawable:vectordrawable:1.1.0"
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.1'
+
+    // Un-comment below statement to use KSoap library
+    implementation 'com.google.code.ksoap2-android:ksoap2-android:3.6.2'
+
+    // Retrofit libraries to connect SOAP api
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.3.1'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.3.1'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.1.0'
+    implementation ('com.squareup.retrofit2:converter-simplexml:2.1.0'){
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+        exclude group: 'xpp3', module: 'xpp3'
+    }
+    // Retrofit libraries to connect SOAP api
+
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    testImplementation 'junit:junit:4.12'
+}
